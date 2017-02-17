@@ -1,24 +1,35 @@
 import {
-    GET_TODOS
+    GET_TODOS,
+    ADD_TODO
 } from '../constants/action-types'
 
-let todoState = {
-    todos: {
-        list: [{
-            key: "1",
-            text: "Hello world!",
-            done: true,
-        }]
-    }
+let initialState = {
+    todos: [{
+        key: "1",
+        text: "Hello world!",
+        done: true,
+    }]
 }
 
-export default function reducer(state=todoState, action) {
+export default function reducer(state = initialState, action) {
     switch(action.type) {
-        case types.GET_TODOS:
-            return {
-                ...state,
-                todos: action.payload,
-            }
+        case GET_TODOS:
+            return Object.assign({}, state, {
+                todos: [
+                    ...state.todos
+                ]
+            });
+
+        case ADD_TODO:
+            return Object.assign({}, state, {
+                todos: [
+                    ...state.todos,
+                    {
+                        key: action.key,
+                        text: action.text,
+                    }
+                ]
+            });
         
         default: return {...state}
     }

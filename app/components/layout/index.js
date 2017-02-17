@@ -13,19 +13,17 @@ class Layout extends Component {
     
     componentWillMount() {
         this.props.dispatch(todoActions.get());
+        this.props.dispatch(todoActions.add("3", "New todo item"));
     }
 
     render() {
-        console.log(this.props);
-        const { list } = this.props.todos;
+        const { todos } = this.props;
 
-        {list.length}
-
-        if(!list.length) {
-            return <h1>No todos {list.length}</h1>;
+        if(!todos.length) {
+            return <h1>No todos {todos.length}</h1>;
         }
 
-        const todoList = list.map(todo => <li key={todo.key}>{todo.text}</li>);
+        const todoList = todos.map(todo => <li key={todo.key}>{todo.text}</li>);
 
         return (
             <div>

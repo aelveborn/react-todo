@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import Layout from './components/layout';
 
-import store from './container/store';
+import store from './containers/store';
 
 const app = document.getElementById('app');
 
